@@ -114,11 +114,11 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                           },
                           onDragEnd: (val) {
                             setState(() {
-                              print("was accepted: ${val.wasAccepted}");
-                              print("\n isDragStarted :$isDragStarted \n");
+                              // print("was accepted: ${val.wasAccepted}");
+                              // print("\n isDragStarted :$isDragStarted \n");
                               isDragStarted = false;
 
-                              print("\n isDropped : $isDropped \n");
+                              // print("\n isDropped : $isDropped \n");
                             });
                           },
                           onDragCompleted: () {
@@ -157,7 +157,7 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                                   ),
                                   onAccept: (data) {
                                     // print("Ayay");
-                                    print("\n data : $data \n");
+                                    // print("\n data : $data \n");
 
                                     final temp = images[index];
                                     images[index] = images[data];

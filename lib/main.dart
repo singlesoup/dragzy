@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home:
-          // Trail(),
           // const MyHomePage(title: 'Drag And Drop'),
       const MyHomePageWithoutPackage(title: 'Drag And Drop'),
     );
