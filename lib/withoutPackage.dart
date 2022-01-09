@@ -30,6 +30,21 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
     return crossAxisCount;
   }
 
+  List<String> images = [
+    "https://images.pexels.com/photos/10757932/pexels-photo-10757932.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+    "https://images.pexels.com/photos/10754454/pexels-photo-10754454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/10510039/pexels-photo-10510039.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/10561071/pexels-photo-10561071.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/10436202/pexels-photo-10436202.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/10053725/pexels-photo-10053725.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "https://images.pexels.com/photos/10551258/pexels-photo-10551258.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/7189274/pexels-photo-7189274.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/5372826/pexels-photo-5372826.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/10661402/pexels-photo-10661402.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+    "https://images.pexels.com/photos/4311512/pexels-photo-4311512.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/10204555/pexels-photo-10204555.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,31 +83,42 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                         return Draggable(
                           data: index,
                           feedback: Material(
-                            child: Container(
-                              height: 200,
-                              width: 200,
-                              alignment: Alignment.center,
-                              color: Colors.teal[100 * (index % 9)],
-                              child: Text('grid item $index'),
+                            child: GridTile(
+                              child: Image.network(
+                                images[index],
+                                fit: BoxFit.cover,
+                                height: 400,
+                                width: 300,
+                              ),
                             ),
                           ),
                           childWhenDragging: Container(
-                            height: 200,
-                            width: 200,
+                            height: 400,
+                            width: 300,
                             alignment: Alignment.center,
-                            color: Colors.yellow[100 * (index % 9)],
-                            child: Text('grid item $index'),
+                            color: Colors.transparent,
+                            // child: Text('grid item $index'),
                           ),
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            alignment: Alignment.center,
-                            color: Colors.teal[100 * (index % 9)],
-                            child: Text('grid item $index'),
+                          child: GridTile(
+                            child: Image.network(
+                              images[index],
+                              fit: BoxFit.cover,
+                              // height: 200,
+                              // width: 200,
+                            ),
                           ),
                           onDragStarted: () {
                             setState(() {
                               isDragStarted = true;
+                            });
+                          },
+                          onDragEnd: (val) {
+                            setState(() {
+                              print("was accepted: ${val.wasAccepted}");
+                              print("\n isDragStarted :$isDragStarted \n");
+                              isDragStarted = false;
+
+                              print("\n isDropped : $isDropped \n");
                             });
                           },
                           onDragCompleted: () {
@@ -102,7 +128,7 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                           },
                         );
                       },
-                      childCount: 30,
+                      childCount: images.length,
                     ),
                   ),
                   !isDragStarted
@@ -119,15 +145,20 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                               return SizedBox(
                                 child: DragTarget<String>(
                                   builder: (_, __, ___) => Container(
-                                    color: isDropped
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                                    height: 200,
-                                    width: 200,
-                                    child: Text(
-                                        'grid items $index and $isDropped'),
+                                    color: Colors.transparent,
+                                    height: 400,
+                                    width: 300,
+                                    // child: Text(
+                                    //     'grid items $index and $isDropped'),
                                   ),
                                   onAccept: (data) {
+                                    for (var i = 0; i < data.length; i++) {
+                                      print("\n data : ${data[i]} \n");
+                                    }
+                                    print("Ayay");
+                                    // final temp = images[oldIndex];
+                                    // images[oldIndex] = images[newIndex];
+                                    // images[newIndex] = temp;
                                     setState(() {
                                       isDropped = true;
                                       isDragStarted = false;

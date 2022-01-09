@@ -1,6 +1,6 @@
-// import 'package:dragzy/withoutPackage.dart';
 
 import 'package:drag_and_drop_gridview/devdrag.dart';
+import 'package:dragzy/withoutPackage.dart';
 // import 'package:dragzy/trail.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       home:
           // Trail(),
-          const MyHomePage(title: 'Drag And Drop'),
-      // const MyHomePageWithoutDragable(),
+          // const MyHomePage(title: 'Drag And Drop'),
+      const MyHomePageWithoutPackage(title: 'Drag And Drop'),
     );
   }
 }
