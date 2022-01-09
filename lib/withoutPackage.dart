@@ -80,7 +80,7 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                         mainAxisSpacing: 10),
                     childrenDelegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        return Draggable(
+                        return Draggable<int>(
                           data: index,
                           feedback: Material(
                             child: GridTile(
@@ -132,7 +132,11 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                     ),
                   ),
                   !isDragStarted
-                      ? Container()
+                      ? Container(
+                          // color: Colors.green,
+                          // height: 400,
+                          // width: 300,
+                          )
                       : GridView.custom(
                           shrinkWrap: true,
                           gridDelegate:
@@ -143,22 +147,27 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                           childrenDelegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
                               return SizedBox(
-                                child: DragTarget<String>(
+                                child: DragTarget<int>(
                                   builder: (_, __, ___) => Container(
-                                    color: Colors.transparent,
+                                    // color: Colors.amber,
                                     height: 400,
                                     width: 300,
                                     // child: Text(
                                     //     'grid items $index and $isDropped'),
                                   ),
                                   onAccept: (data) {
-                                    for (var i = 0; i < data.length; i++) {
-                                      print("\n data : ${data[i]} \n");
-                                    }
-                                    print("Ayay");
-                                    // final temp = images[oldIndex];
-                                    // images[oldIndex] = images[newIndex];
-                                    // images[newIndex] = temp;
+                                    // print("Ayay");
+                                    print("\n data : $data \n");
+
+                                    final temp = images[index];
+                                    images[index] = images[data];
+                                    images[data] = temp;
+
+                                    // data is index on dragging Image
+                                    // final temp = index;
+
+                                    // newindex = data;
+
                                     setState(() {
                                       isDropped = true;
                                       isDragStarted = false;
