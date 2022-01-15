@@ -117,15 +117,15 @@ class _MyHomePageWithoutPackageState extends State<MyHomePageWithoutPackage> {
                               // print("was accepted: ${val.wasAccepted}");
                               // print("\n isDragStarted :$isDragStarted \n");
                               isDragStarted = false;
-
-                              // print("\n isDropped : $isDropped \n");
+                              // print("\n isDropped end : $isDropped \n");
                             });
                           },
-                          onDragCompleted: () {
-                            setState(() {
-                              isDragStarted = false;
-                            });
-                          },
+                          // onDragCompleted: () {
+                          //   setState(() {
+                          //     isDragStarted = false;
+                          //     // print("\n isDropped : $isDropped \n");
+                          //   });
+                          // },
                         );
                       },
                       childCount: images.length,
